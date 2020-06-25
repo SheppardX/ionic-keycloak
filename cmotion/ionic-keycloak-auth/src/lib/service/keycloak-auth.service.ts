@@ -79,7 +79,7 @@ export class KeycloakAuthService {
           .catch(err => reject(err));
         resolve();
       } else {
-        const browser = this.inAppBrowser.create(url, '_system');
+        const browser = this.inAppBrowser.create(url, '_blank');
         const sub = browser.on('loadstop')
           .subscribe(() => {
             browser.close();
@@ -279,7 +279,7 @@ export class KeycloakAuthService {
     if (await this.browserTab.isAvailable()) {
       this.browserTab.openUrl(url);
     } else {
-      this.inAppBrowser.create(url, '_system');
+      this.inAppBrowser.create(url, '_blank');
     }
 
     return new Promise<KeycloakLoginResponse>((resolve, reject) => {
